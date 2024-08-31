@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunshot Detection</title>
+</head>
+<body>
+    <h1>Upload an Audio File for Detection</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <label for="audio_file">Choose an audio file:</label>
+        <input type="file" id="audio_file" name="audio_file" accept="audio/*" required>
+        <br><br>
+        <button type="submit">Upload and Detect</button>
+    </form>
+</body>
+</html>
