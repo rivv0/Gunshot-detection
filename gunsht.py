@@ -6,17 +6,13 @@ import tensorflow as tf
 import pandas as pd
 from flask import Flask, request, jsonify, render_template
 
-# Load the model from the .pkl file
 with open('model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-# Load the CSV file with class labels
 audiofiles = pd.read_csv(r'C:\Users\rivva\gunshot_detect\gunshot-detection\UrbanSound8K.csv')
 
-# Extract unique class labels based on classID and map them to the corresponding names
 classes = dict(zip(audiofiles['classID'], audiofiles['class']))
 
-# Initialize Flask app
 app = Flask(__name__)
 
 @app.route('/')
