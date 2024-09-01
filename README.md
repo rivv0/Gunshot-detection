@@ -3,7 +3,7 @@ Developing Classification and Localization Algorithm
 
 ## ARCHITECTURE
 
-[architecture diagram](img/architecture_diagram.png "Title Text")
+![architecture diagram](images/architecture_diagram.png "Title Text")
 
 Bandpass filters(BPF), allows frequencies in the band of 3KHz to pass through while attenuating others outside the range.
 ❖The following custom IP will contain the following new additions-
