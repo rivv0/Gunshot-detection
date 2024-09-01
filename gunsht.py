@@ -4,6 +4,8 @@ import librosa
 import numpy as np
 import tensorflow as tf
 import pandas as pd
+from scipy.optimize import least_squares
+from localisation import locate_gunshot, create_plotly_3d_plot, MIC_POSITIONS 
 from flask import Flask, request, jsonify, render_template
 
 with open('model.pkl', 'rb') as f:
@@ -15,9 +17,27 @@ classes = dict(zip(audiofiles['classID'], audiofiles['class']))
 
 app = Flask(__name__)
 
+
+
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index2.html')
+
+@app.route('/locate', methods=['POST'])
+def locate():
+    data = request.get_json()
+    toa = data.get('toa')
+    if not toa:
+        return jsonify({'error': 'ToA values are missing'}), 400
+
+    try:
+        # Process the ToA values and determine the location
+        location = locate_gunshot(toa)  # Function from your localisation module
+        plot_html = create_plotly_3d_plot(location, MIC_POSITIONS)  # Function from your localisation module
+        return jsonify({'location': location.tolist(), 'plot_html': plot_html})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/predict', methods=['POST'])
 def predict():
