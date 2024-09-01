@@ -1,6 +1,5 @@
-# Gunshot Detection
-
-## Developing a FPGA- based gunshot detection system.
+# Microphone array-based direction of arrival for gunshot detection
+## Developing Classification and Localization Algorithm
 
 ## By using ADC, conversion of analog to digital signal.
 
